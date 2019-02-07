@@ -440,6 +440,14 @@ const firstFlower = flower[0];
 
 flower.forEach(element => {
     for (const value of Object.entries(element)) {
-        outputElement.innerHTML += `<div>${value[0]}: ${value[1]}</div>`
+        if (value[1] === null) {
+            outputElement.innerHTML += `<div>${value[0]}: none</div>`;
+        } else if (typeof value[1] === "object") {
+            for (const innervalue of Object.entries(value[1])) {
+                outputElement.innerHTML += `<div>${innervalue[0]}: ${innervalue[1]}</div>`;
+            }
+        } else {
+            outputElement.innerHTML += `<div>${value[0]}: ${value[1]}</div>`;
+        }
     }
 });
